@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class Homework5 {
+
+	public static void main(String[] args) {
+//		1. 1부터 100까지 홀수만 출력하기. continue 사용
+		for(int i=0; i<100; i++) {
+			if(i%2 == 1) {
+				System.out.print(i+" ");
+			}continue;
+		}
+		System.out.println(" ");
+//		2. 1부터 100까지 3의 배수만 출력하기. continue 사용
+		for(int i=0; i<100; i++) {
+			if(i%3 == 0) {
+				System.out.print(i+" ");
+			}
+		}
+		System.out.println(" ");
+		
+//		3. 학생 이름, 국어, 영어, 수학 점수를 입력하여 평균을 구해서 출력하는 
+//		프로그램을 작성하시오. 계속 반복하다가 "exit"를 입력하면 종료.
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("학생 이름, 국어, 영어, 수학 점수를 입력하시오. \"exit\"를 입력하면 종료");
+		while(true) {
+			String name = scanner.next();
+			System.out.print("학생 이름 : "+name);
+		if(name.equals("exit")){
+			System.out.println("\n종료합니다.");
+			break;
+		}
+			
+			String kor = scanner.next();
+			System.out.print(", 국어 점수 : "+kor);
+		if(kor.equals("exit")) {
+			System.out.println("\n종료합니다.");
+			break;
+		}	int int_kor = Integer.parseInt(kor);
+		
+		
+			String eng = scanner.next();
+			System.out.print(", 영어 점수 : "+eng);
+		if(eng.equals("exit")) {
+			System.out.println("\n종료합니다.");
+			break;
+		}	int int_eng = Integer.parseInt(eng);
+			
+			String math = scanner.next();
+			System.out.print(", 수학 점수 : "+math);
+		if(math.equals("exit")) {
+			System.out.println("\n종료합니다.");
+			break;
+		}	int int_math = Integer.parseInt(math);
+		int avg = (int_kor+int_eng+int_math)/3;
+		System.out.println("\n>>평균 : "+avg);
+		}		
+//		4. 3번을 배열을 만들어서 작성해보세요.
+		System.out.println("4번 문제. (배열 이용)학생 이름, 국어, 영어, 수학 점수를 입력하시오. \"exit\"를 입력하면 종료");	
+		String[] text_2 = new String[4];
+		int kor=0, eng=0, math=0;
+		int avg;
+		Loop1 : 
+			while(true) {
+			for(int i=0; i<text_2.length; i++) {
+			text_2[i]=scanner.next();
+			if(text_2[i].equals("exit")) {
+				System.out.println("종료합니다.");
+				break Loop1;
+			}
+			
+			if(i==1) {
+				System.out.print("국어 점수 :  "+text_2[i]);
+				kor = Integer.parseInt(text_2[i]);
+			}else if(i==2) {
+				System.out.print("영어 점수 :  "+text_2[i]);
+				eng = Integer.parseInt(text_2[i]);
+			}else if(i==3) {
+				System.out.print("수학 점수 :  "+text_2[i]);
+				math = Integer.parseInt(text_2[i]);
+				avg = (kor+eng+math)/3;
+				System.out.println("평균 점수 :  "+avg);
+			}
+			
+		
+		}	
+		
+		}
+	}
+	
+}
+
+	
+	
+
+
