@@ -1,0 +1,70 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class ChartEx extends JFrame{
+	private MyPanel panel = new MyPanel();
+	
+	public ChartEx() {
+		this.setTitle("차트");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		panel.setBackground(Color.GRAY);
+		this.setContentPane(panel);//panel을 컨테이너로 설정
+		
+		this.setSize(800,800);
+		this.setVisible(true);
+}
+	class MyPanel extends JPanel{
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			int height = 20;
+			int gap=10;
+			int q1=250;
+			int q2=200;
+			int q3=100;
+			int q4=270;
+			
+			int gap2 = 50;
+			
+			g.drawString("1/4분기", 40, 60);
+			g.fillRect(100, 50, q1, height);
+			
+			g.drawString("2/4분기", 40, 60+gap+height);
+			g.fillRect(100, 50+height+gap, q2, height);
+
+			g.drawString("3/4분기", 40, 60+(gap+height)*2);
+			g.fillRect(100, 50+(height+gap)*2, q3, height);
+			
+			g.drawString("4/4분기", 40, 60+(gap+height)*3);
+			g.fillRect(100, 50+(height+gap)*3, q4, height);
+		
+			g.drawLine(100, 400, 100+gap2, 450-q1);
+			g.drawLine(100+gap2, 450-q1, 100+gap2*2, 450-q2);
+			g.drawLine(100+gap2*2, 450-q1+(q1-q2), 100+gap2*3, 450-q3);
+			g.drawLine(100+gap2*3, 450-q1+(q1-q2)+(q2-q3), 100+gap2*4, 450-q4);
+			//dash board 만드는 예제
+			
+			g.setColor(Color.RED);
+			g.fillArc(100, 550, 100, 100, 0, 90);
+			g.setColor(Color.GREEN);
+			g.fillArc(100, 550, 100, 100, 90, 45);
+			g.setColor(Color.BLUE);
+			g.fillArc(100, 550, 100, 100, 135, 180);
+			g.setColor(Color.CYAN);
+			g.fillArc(100, 550, 100, 100, 315, 45);
+		
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		new ChartEx();
+	}
+
+}
