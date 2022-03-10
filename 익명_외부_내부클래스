@@ -1,0 +1,78 @@
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+
+public class IndepClassListener extends JFrame implements ActionListener{ //클래스명 틀리면 왼쪽에서 오른쪽 마우스 --> Refactor --> Rename
+	public IndepClassListener() {
+		this.setTitle("Action이벤트 리스너 예제");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = this.getContentPane();//getContentPane() 무슨 뜻? // ctrl + shift + o 누르면 자동
+		//컨테이너를 만든다. 
+		c.setLayout(new FlowLayout()); //무슨 뜻? 레이아웃을 사용한다. 설정된 레이아웃
+		JButton btn = new JButton("Action");
+//		btn.addActionListener(new MyActionListener());//btn에 사용되는 리스너 연결
+		
+//		btn.addActionListener(new ActionListener() { //익명클래스로 하는 방법
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JButton b = (JButton)e.getSource();//getSource 위에 마우스 올려보면 리턴값이 Object이므로 JButton형으로 변경 
+//				if(b.getText().equals("Action")) {
+//					b.setText("액션");
+//				}else {
+//					b.setText("Action");
+//				}				
+//			}});
+		btn.addActionListener(this);//ActionListener를 상속 받았으므로 this 써도 됨
+		//버튼 내부에서 액션을 하면 액션 리스너를 호출한다.
+		c.add(btn);				//리스너 연결은 add???Listener
+		
+		this.setSize(350,150);
+		this.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new IndepClassListener();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {//e를 통해 이벤트 정보 호출
+		JButton b = (JButton)e.getSource();//getSource 위에 마우스 올려보면 리턴값이 Object이므로 JButton형으로 변경 
+		if(b.getText().equals("Action")) {
+			b.setText("액션");
+		}else {
+			b.setText("Action");
+		}
+		
+	}
+
+}
+
+//class MyActionListener implements ActionListener{
+
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		JButton b = (JButton)e.getSource();//getSource 위에 마우스 올려보면 리턴값이 Object이므로 JButton형으로 변경 
+//		if(b.getText().equals("Action")) {
+//			b.setText("액션");
+//		}else {
+//			b.setText("Action");
+//		}
+//	}
+//}
+//
+//class MyActionListener2 implements ActionListener{
+//
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		System.out.println("MyActionListener2");
+//	}
+	
+//}
+
