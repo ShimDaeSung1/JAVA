@@ -1,0 +1,114 @@
+package 자바연습문제15_;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class JavaEx15 extends JFrame{
+	private JMenuItem menuItem1 = null;
+	private JMenuItem menuItem2 = null;
+	private JMenuItem menuItem3 = null;
+	
+	public JavaEx15() {
+		setTitle("디지털 시계");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(600, 600);
+		setVisible(true);
+		
+		Container c = getContentPane();
+		c.setLayout(new FlowLayout());
+		
+		JLabel timeLabel = new JLabel();
+		timeLabel.setFont(new Font("Gothic", Font.ITALIC, 70));
+		c.add(timeLabel);
+		
+		TimeThread th = new TimeThread(timeLabel);
+		th.start();
+		
+		JMenuBar mb = new JMenuBar();
+		JMenu menu = new JMenu("Color");
+		this.menuItem1 = new JMenuItem("Red");
+		menu.add(menuItem1);
+		mb.add(menu);
+		
+		this.menuItem2 = new JMenuItem("Green");
+		menu.add(menuItem2);
+	
+		this.menuItem3 = new JMenuItem("Blue");
+		menu.add(menuItem3);
+
+		c.add(mb);
+		this.setJMenuBar(mb);
+
+		menuItem1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.setBackground(Color.RED);
+			}
+			
+		});
+		menuItem2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.setBackground(Color.GREEN);
+			}
+			
+		});
+		menuItem3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.setBackground(Color.BLUE);
+			}
+			
+		});
+		
+	}	
+	
+	class TimeThread extends Thread{
+		JLabel timeLabel;
+		public TimeThread(JLabel timeLabel) {
+			this.timeLabel = timeLabel;
+		}
+		
+		public void run() { 
+			Calendar time = Calendar.getInstance();//현재시간이 디폴트 값으로 저장됨
+			int hour = time.get(Calendar.HOUR_OF_DAY);
+			int minute = time.get(Calendar.MINUTE);
+			int sec = time.get(Calendar.SECOND);
+			
+			while(true) {
+				timeLabel.setText(Integer.toString(hour)+"시"+Integer.toString(minute)+"분"+Integer.toString(sec)+"초");
+				sec++;
+				if(sec==60) {
+					sec = 0;
+					minute++;
+				}if(minute==60) {
+					minute = 60;
+					hour++;
+				}
+				try {
+					Thread.sleep(1000);
+				}catch(InterruptedException e) {
+					return;
+				}
+			}
+		}}
+
+	public static void main(String[] args) {
+		new JavaEx15();
+	}
+
+}
