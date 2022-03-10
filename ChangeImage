@@ -1,0 +1,86 @@
+package 자바연습문제13;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class JavaEx13 extends JFrame {
+	int index = 0;
+	
+	private ImageIcon [] image = {
+			new ImageIcon("images/apple.jpg"),
+			new ImageIcon("images/pear.jpg"),
+			new ImageIcon("images/cherry.jpg")
+	};
+	private JLabel imageLabel = new JLabel(image[index]);
+	JButton btnLeft = new JButton();
+	JButton btnRight = new JButton();
+	
+	
+	
+	public JavaEx13() {
+		setTitle("자바연습문제 13");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container c = getContentPane();
+		c.setLayout(new FlowLayout());
+		
+		ImageIcon left = new ImageIcon("images/leftButton.png");
+		btnLeft = new JButton(left);
+		btnLeft.setPreferredSize(new Dimension(55, 28));
+		c.add(btnLeft);
+		
+		btnLeft.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				index -= 1;
+				if(index < 0) {
+					index = 2;
+				}
+				imageLabel.setIcon(image[index]);
+			}
+			
+			
+		});
+		
+		
+		ImageIcon right = new ImageIcon("images/rightButton.png");
+		btnRight = new JButton(right);
+		btnRight.setPreferredSize(new Dimension(55, 28));
+		c.add(btnRight);
+		btnRight.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				index += 1;
+				if(index > 2) {
+					index = 0;
+				}
+				imageLabel.setIcon(image[index]);
+			}
+			
+		});
+		
+		c.add(imageLabel, FlowLayout.CENTER);
+		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		setSize(250,200);
+		setVisible(true);
+	}
+
+	
+	public static void main(String[] args) {
+		new JavaEx13();
+	}
+
+}
