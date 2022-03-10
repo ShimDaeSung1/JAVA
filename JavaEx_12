@@ -1,0 +1,112 @@
+package 자바연습문제12;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalTime;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class JavaEx_12 extends JFrame {
+	public JavaEx_12() {
+		setTitle("현재 시간 구해서 Label에 출력하기");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		c.setLayout(new FlowLayout());
+		
+		
+		LocalTime now = LocalTime.now();
+		System.out.println(now);
+		int hour = now.getHour();
+		
+		if(hour < 12) {
+			JLabel label = new JLabel("Good Morining");
+			c.add(label);
+		}else if(hour>=12 && hour<18) {
+			JLabel label = new JLabel("Good Afternoon");			
+			c.add(label);
+		}else if(hour>18) {
+			JLabel label = new JLabel("Good Evening");			
+			c.add(label);
+		}
+		
+		
+		setSize(250,250);
+		setVisible(true);
+		
+	}
+
+static class Ex3 extends JFrame implements ActionListener {
+	static JLabel label = new JLabel();
+	public Ex3() {
+		setTitle("각 버튼을 클릭해보시오");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		c.setLayout(null);
+		
+		LocalTime now = LocalTime.now();
+		String now1 = now.toString();
+		label.setText(now1);
+		label.setSize(100, 20);
+		label.setLocation(50, 50);
+		c.add(label);
+		
+		JButton btn1 = new JButton("외부클래스");
+		btn1.addActionListener(new MyActionListener()); //외부클래스
+		c.add(btn1);
+		btn1.setBounds(30, 170, 100, 25);
+		
+		JButton btn2 = new JButton("내부클래스");
+		btn2.addActionListener(this);
+		c.add(btn2);
+		btn2.setBounds(150, 170, 100, 25);
+		
+		JButton btn3 = new JButton("익명클래스");
+		btn3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String now = LocalTime.now().toString();
+				label.setText(now);
+			}
+			
+		});
+		c.add(btn3);
+		btn3.setBounds(270, 170, 100, 25);
+		
+		setSize(600, 600);
+		setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		LocalTime now = LocalTime.now();
+		String now1 = now.toString();
+		label.setText(now1);
+		
+	}
+}
+
+static class MyActionListener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		LocalTime now = LocalTime.now();
+		String now2 = now.toString();
+		Ex3.label.setText(now2);
+	}
+	
+}
+	public static void main(String[] args) {
+		new JavaEx_12();
+		new Ex3();
+	}
+
+
+}
