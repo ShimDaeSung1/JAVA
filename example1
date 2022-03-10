@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Homework {
+
+	public static void main(String[] args) {
+		//1. 키보드로 원의 반지름을 입력 받아서 원의 면적을 구하는 프로그램을 작성하시오. scanner사용
+		// 원의 면적 = PI * r*r
+		
+		final double PI = 3.14;
+		System.out.println("반지름을 입력하세요");
+		Scanner scanner = new Scanner(System.in);
+		
+		double radius = scanner.nextDouble();
+		double circleArea = radius*radius*PI;
+		System.out.println("원의 넓이 : "+circleArea);
+		
+		
+		// 2. 이름, 학번, 학과를 키보드 입력을 받아서 출력하기. scanner사용
+		System.out.println("이름을 입력하세요.");
+		String name = scanner.next();
+		System.out.println("이름 : "+name);
+		
+		System.out.println("학번을 입력하세요.");
+		int number = scanner.nextInt();
+		System.out.println("학번 : "+number);
+		
+		System.out.println("학과를 입력하세요.");
+		String major = scanner.next();
+		System.out.println("학과 : "+major);
+		
+		
+		// 3. 국어, 영어, 수학 세과목을 키보드 입력을 받아서 평균구하기. scanner 사용
+		System.out.println("국어 성적을 입력하세요");
+		int korea = scanner.nextInt();
+		System.out.println("국어 성적 : "+korea);
+		
+		System.out.println("영어 성적을 입력하세요");
+		int english = scanner.nextInt();
+		System.out.println("영어 성적 : "+	english);
+		
+		System.out.println("수학 성적을 입력하세요");
+		int math = scanner.nextInt();
+		System.out.println("영어 성적 : "+	math);
+		
+		
+		int average = (korea+english+math)/3;
+		System.out.println("평균 성적 : "+average);
+		scanner.close();
+		
+		
+	}
+
+}
