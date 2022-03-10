@@ -1,0 +1,35 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+//폴더 오른쪽 마우스 - properties - Libraries - classpath - add external JARs 또는 폴더에서 jar파일 복사 후 이클립스 안에서 폴더에 오른쪽 마우스 - paste - add JARs..
+public class JDBCTest {
+
+	public static void main(String[] args) {
+		try {
+			//oracle jdbc드라이버 로드
+			Class.forName("oracle.jdbc.driver.OracleDriver");// jdbc driver load
+			//Connection
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","hong");// 연결
+			System.out.println("연결완료");
+			
+			Statement stmt = conn.createStatement();
+			
+//			stmt.executeUpdate("insert into student values('111111','홍길동','철학과')");//영향을 받은 행의 수가 리턴됨
+//			stmt.executeUpdate("update student set dept='전자공학' where id = '1234567'");
+			stmt.executeUpdate("delete from student where id = '1234567'");
+			ResultSet rs = stmt.executeQuery("select * from student"); //커서역할
+			while(rs.next()) {//데이터가 있으면 true, 없으면 false
+				System.out.print(rs.getString("id")+"\t");
+				System.out.print(rs.getString("name")+"\t");
+				System.out.println(rs.getString("dept"));
+			} //응용프로그램(java)에서 실행한 내용은 오라클에서 자동 커밋된다.
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {}
+	}
+
+}
