@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Homework9 {
+
+	public static void main(String[] args) {
+		//1.
+		String homework1 = "010101-123456";
+		String[] birth = homework1.split("-");
+		System.out.println("생년월일은 "+birth[0]);
+	
+		//2.
+		String homework2 = "010-1234-5678";
+		homework2 = homework2.replace("-", "-");
+		System.out.println("-를 제거한 전화번호 : "+homework2);
+		
+		//3. 
+		String sellCode = "E20160001";
+		if(sellCode.startsWith("E")) {
+			System.out.println("상품카테고리는 전자기기 입니다.");
+		}
+		
+		//4.
+		String sellYear = sellCode.substring(0, 5);
+		System.out.println("상품 제조년도 : "+sellYear);
+		
+		//5.
+		String csv = "홍길동,010-1111-2222,hkd@hkd.com";
+		String[] csv1 = csv.split(",");
+		for(String c:csv1) {
+			System.out.println(c);
+		}
+		//6.
+		String csv2 = "EL201800001,CH201800021,EN12231";
+		String[] csv3 = csv2.split(",");
+		for(int i = 0; i<csv3.length; i++) {
+			if(csv3[i].substring(0,2).equals("EL")) {
+				System.out.println("전자공학과 입니다.");
+			}if(csv3[i].substring(0,2).equals("CH")) {
+				System.out.println("화학공학과 입니다.");
+			}if(csv3[i].substring(0,2).equals("EN")) {
+				System.out.println("영어영문학과 입니다.");
+			}
+		}
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("ID를 입력하세요>>");
+		String id = scanner.nextLine();
+		if(id.contains("!")) {
+			System.out.println("아이디에"+id.charAt(id.indexOf("!"))+ "가 포함되면 안 됩니다.");
+		}if(id.contains("@")) {
+			System.out.println("아이디에"+id.charAt(id.indexOf("@"))+ "가 포함되면 안 됩니다.");
+		}if(id.contains("#")) {
+			System.out.println("아이디에"+id.charAt(id.indexOf("#"))+ "가 포함되면 안 됩니다.");
+		}if(id.contains("%")) {
+			System.out.println("아이디에"+id.charAt(id.indexOf("%"))+ "가 포함되면 안 됩니다.");
+		}if(id.contains("^")) {
+			System.out.println("아이디에"+id.charAt(id.indexOf("^"))+ "가 포함되면 안 됩니다.");
+		}
+	}
+
+}
