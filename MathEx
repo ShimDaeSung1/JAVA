@@ -1,0 +1,20 @@
+
+public class MathEx {
+
+	public static void main(String[] args) {
+		double a =Math.PI;
+		System.out.println(Math.PI); // Math 클래스의 메소드들은 다 static에 올라가 있으므로 객체를 생성하지 않아도 바로 사용 가능
+		System.out.println(Math.ceil(a));
+		System.out.println(Math.floor(a));
+		System.out.println(Math.sqrt(9));
+		System.out.println(Math.exp(2));
+		System.out.println(Math.round(3.14));
+		
+		//[1,45]사이의 난수 5개 발생
+		System.out.println("오늘의 행운 번호는");
+		for(int i = 0; i<5; i++) {
+			System.out.print((int)(Math.random()*45+1)+" ");
+		}
+	}
+
+}
