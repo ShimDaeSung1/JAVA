@@ -1,3 +1,5 @@
+//폴더 오른쪽 마우스 - properties - java build path - Libraries - classpath - add external JARs 또는 폴더에서 jar파일 복사 후 이클립스 안에서 폴더에 오른쪽 마우스 - paste - add JARs..
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
