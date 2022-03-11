@@ -64,15 +64,17 @@ public class Student extends JPanel{
 					model.setRowCount(0); //JTable초기화
 					while(rs.next()) {
 
-						String[] row=new String[3];//컬럼의 갯수가 4
+						String[] row=new String[4];//컬럼의 갯수가 4
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
 						row[2]=rs.getString("dept");
+						row[3]=rs.getString("address");
 						model.addRow(row);
 						
 						tfId.setText(rs.getString("id"));
 						tfName.setText(rs.getString("name"));
 						tfDepartment.setText(rs.getString("dept"));
+						tfAddress.setText(rs.getString("address"));
 					}
 					rs.close();
 					stmt.close();
@@ -121,7 +123,6 @@ public class Student extends JPanel{
 			    tfDepartment.setText(dept);
 
 			    String address=(String)model.getValueAt(table.getSelectedRow(), 3);
-
 			    tfAddress.setText(address);
 			}
 
@@ -155,16 +156,17 @@ public class Student extends JPanel{
 					Statement stmt=conn.createStatement();
 					
 					
-					stmt.executeUpdate("insert into student values('"+tfId.getText()+"','"+tfName.getText()+"','"+tfDepartment.getText()+"')"); //영향을 받은 행의 수가 리턴됨
+					stmt.executeUpdate("insert into student values('"+tfId.getText()+"','"+tfName.getText()+"','"+tfDepartment.getText()+"',"+tfAddress.getText()+")"); //영향을 받은 행의 수가 리턴됨
 								
 					ResultSet rs=stmt.executeQuery("select * from student");
 
 					model.setRowCount(0); //JTable초기화
 					while(rs.next()) {
-						String[] row=new String[3];//컬럼의 갯수가 4
+						String[] row=new String[4];//컬럼의 갯수가 4
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
 						row[2]=rs.getString("dept");
+						row[3]=rs.getString("address");
 						model.addRow(row);
 					}
 					rs.close();
@@ -201,10 +203,11 @@ public class Student extends JPanel{
 					ResultSet rs=stmt.executeQuery("select * from student");
 					model.setRowCount(0); //JTable초기화
 					while(rs.next()) {
-						String[] row=new String[3];//컬럼의 갯수가 4
+						String[] row=new String[4];//컬럼의 갯수가 4
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
 						row[2]=rs.getString("dept");
+						row[3]=rs.getString("address");
 						model.addRow(row);
 						
 						
@@ -236,16 +239,17 @@ public class Student extends JPanel{
 					
 					Statement stmt=conn.createStatement();
 					
-					stmt.executeUpdate("update student set name='"+tfName.getText()+"',dept='"+tfDepartment.getText()+"' where id='"+tfId.getText()+"'");
+					stmt.executeUpdate("update student set name='"+tfName.getText()+"',dept='"+tfDepartment.getText()+"', address = '"+tfAddress.getText()+"' where id='"+tfId.getText()+"'");
 					
 					ResultSet rs=stmt.executeQuery("select * from student");
 
 					model.setRowCount(0); //JTable초기화
 					while(rs.next()) {
-						String[] row=new String[3];//컬럼의 갯수가 3
+						String[] row=new String[4];//컬럼의 갯수가 3
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
-						row[2]=rs.getString("dept");					
+						row[2]=rs.getString("dept");
+						row[3]=rs.getString("address");
 
 						model.addRow(row);
 					}
@@ -283,10 +287,11 @@ public class Student extends JPanel{
 						
 						model.setRowCount(0); //JTable초기화
 						while(rs.next()) {
-							String[] row=new String[3];//컬럼의 갯수가 3
+							String[] row=new String[4];//컬럼의 갯수가 3
 							row[0]=rs.getString("id");
 							row[1]=rs.getString("name");
-							row[2]=rs.getString("dept");					
+							row[2]=rs.getString("dept");	
+							row[3]=rs.getString("address");
 
 							model.addRow(row);
 						}
