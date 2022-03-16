@@ -1,0 +1,169 @@
+//폴더 오른쪽 마우스 - properties - java build path - Libraries - classpath - add external JARs 또는 폴더에서 jar파일 복사 후 이클립스 안에서 폴더에 오른쪽 마우스 - paste - add JARs..
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+class loginPanel extends JFrame {
+	JLabel la1, la2;
+	JTextField tf;
+	JPasswordField pf;
+	JButton btn1;
+	
+	loginPanel(){
+		setTitle("로그인화면");
+		la1 = new JLabel("ID");;
+		la2 = new JLabel("PW");
+		tf = new JTextField();
+		pf = new JPasswordField();
+		btn1 = new JButton("Login");
+		
+		  //배치
+		setLayout(null);
+		la1.setBounds(10, 15, 50, 20);
+		tf.setBounds(65, 15, 120, 20);
+		btn1.setBounds(75, 70, 70, 20);  
+		la2.setBounds(10, 40, 50, 20);
+		pf.setBounds(65, 40, 120, 20);
+		  	
+		add(la1);
+		add(tf);
+		add(la2);
+		add(pf);
+		add(btn1);
+		
+		setBounds(0, 0, 250, 150);
+		setVisible(true);
+	}
+	
+};
+
+public class Haksa extends JFrame{
+
+JScrollPane scrollPane;
+Image img;
+ImageIcon icon;
+	
+
+JButton b1;
+
+
+ JPanel panel;  // 메뉴별 화면이 출력되는 패널
+ Haksa(){
+  
+	 icon = new ImageIcon("C:\\Users\\82104\\eclipse-workspace\\Haksa\\img\\아주대학교.jpg");
+
+
+  setTitle("학사관리시스템"); 
+
+ 
+  JPanel p = new JPanel() {
+	  public void paintComponent(Graphics g) {
+          // Approach 1: Dispaly image at at full size
+          g.drawImage(icon.getImage(), 0, 0, null);
+          // Approach 2: Scale image to size of component
+          // Dimension d = getSize();
+          // g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+          // Approach 3: Fix the image position in the scroll pane
+          // Point p = scrollPane.getViewport().getViewPosition();
+          // g.drawImage(icon.getImage(), p.x, p.y, null);
+          setOpaque(false); //그림을 표시하게 설정,투명하게 조절
+          super.paintComponent(g);
+      }
+  };
+  scrollPane = new JScrollPane(p);
+	setContentPane(scrollPane);
+	
+
+	  b1 = new JButton("실행");
+
+
+	  
+	  b1.setBounds(10, 15, 50, 20);
+  p.setOpaque(false);
+  p.add(b1);
+  b1.addActionListener(new ActionListener() {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		new loginPanel();
+		
+	}
+	  
+  });
+  
+
+  
+//  p.setBounds(10, 65, 175, 35);
+
+
+//  add(p);
+  setSize(460,480);  
+  setVisible(true);
+  
+//  panel=new JPanel();//panel생성
+//  add(panel);//프레임에 패널 추가
+  
+  
+//  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//x버튼 누르면 프로그램 종료
+//  
+//  JMenuBar bar=new JMenuBar();
+//  
+//  JMenu m_student=new JMenu("학생관리");//File메뉴
+//  bar.add(m_student);
+//  JMenu m_book=new JMenu("도서관리");//Edit메뉴
+//  bar.add(m_book);
+//  
+//  JMenuItem mi_list=new JMenuItem("학생정보");
+//  m_student.add(mi_list);
+//  
+//  mi_list.addActionListener(new ActionListener(){
+//
+//   @Override
+//   public void actionPerformed(ActionEvent e) {
+//    panel.removeAll(); //모든컴포넌트 삭제
+//    panel.revalidate(); //다시 활성화
+//    panel.repaint();    //다시 그리기
+//    panel.add(new Student()); //화면 생성.
+//    panel.setLayout(null);//레이아웃적용안함
+//    
+//   }});
+//   
+//  JMenuItem mi_bookRent=new JMenuItem("대출목록");
+//  m_book.add(mi_bookRent);
+//  
+//  mi_bookRent.addActionListener(new ActionListener(){
+//
+//   @Override
+//   public void actionPerformed(ActionEvent e) {
+//    panel.removeAll(); //모든컴포넌트 삭제
+//    panel.revalidate(); //다시 활성화
+//    panel.repaint();    //다시 그리기
+//    panel.add(new BookRent()); //화면 생성.
+//    panel.setLayout(null);//레이아웃적용안함
+//    
+//   }});
+//  
+
+  
+//  setJMenuBar(bar);
+
+  
+  
+ }
+ public static void main(String[] args) {
+  
+  new Haksa();
+ }
+
+}
