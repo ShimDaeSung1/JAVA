@@ -24,7 +24,7 @@ public class NewAdd extends JFrame {
 		setTitle("회원가입");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(460,470);
-		setLocationRelativeTo(null);
+// 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(contentPane);
