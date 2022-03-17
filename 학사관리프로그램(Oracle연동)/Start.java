@@ -7,8 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 class LoginDialog extends JPanel{
 
@@ -23,7 +26,7 @@ class LoginDialog extends JPanel{
 public class Start extends JFrame {
 	JScrollPane scrollPane;
 	JButton button = null;
-	
+	Font f1;
 	
 	
 	private Image backGround=new ImageIcon(Start.class.getResource("아주대학교.jpg")).getImage();
@@ -31,7 +34,7 @@ public class Start extends JFrame {
 		g.drawImage(backGround, 10, 17, this);//background를 그려줌
 	}
 	Start(){
-		
+		f1 = new Font("바탕",Font.PLAIN,15);
 		setLayout(null);
 		setTitle("아주대학교 학사관리 프로그램");
 		
@@ -44,19 +47,20 @@ public class Start extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+//				setVisible(false);
 				Login lg = new Login();
 				lg.setVisible(true);
 			}
 			
 		});
 	    //프레임의 배경이 아주대 로고이므로 그 위에 버튼을 보이게 하려면
-	    //버튼을 만든 패널을 위에 덮어서 보이게 해야함
+	    //패널을 올리고 그 위에 버튼을 붙여줘야함
 		LoginDialog p = new LoginDialog();
 		p.add(button);
 		scrollPane = new JScrollPane(p);
         setContentPane(scrollPane);
-		add(p);
+        add(p);
+		
 		
 	    this.setSize(460,470);
 	    this.setVisible(true);
