@@ -24,7 +24,7 @@ public class Start extends JFrame {
 	JScrollPane scrollPane;
 	JButton button = null;
 	
-	Login lg = new Login();
+	
 	
 	private Image backGround=new ImageIcon(Start.class.getResource("아주대학교.jpg")).getImage();
 	public void paint(Graphics g) {//그리는 함수
@@ -45,6 +45,7 @@ public class Start extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				Login lg = new Login();
 				lg.setVisible(true);
 			}
 			
