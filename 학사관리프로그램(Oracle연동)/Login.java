@@ -1,6 +1,10 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,21 +47,44 @@ Login(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+		
 				String id = tf1.getText().trim();
 				String pw = pw1.getText().trim();
 				
-				if(id.length()==0 || pw.length()==0) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");// jdbc driver load
+					//Connection
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","hong");// 연결
+					System.out.println("연결완료");
+					
+					Statement stmt=conn.createStatement();
+					
+					
+//					stmt.executeUpdate("update student set name='"+tfName.getText()+"',dept='"+tfDepartment.getText()+"', address = '"+tfAddress.getText()+"' where id='"+tfId.getText()+"'");
+					
+					ResultSet rs=stmt.executeQuery("select password from member where username = '"+id+"'");
+
+					if(rs.next()) {
+						if(rs.getString(1).contentEquals(pw)) {
+							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+							new Haksa();
+						
+						}else {
+							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+						}
+						
+					}if(id.length()==0 || pw.length()==0) {
 					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 입력하셔야 됩니다.","아이디나 비번을 입력!", JOptionPane.DEFAULT_OPTION);
-					return;
+					}
+					rs.close();
+					stmt.close();
+					conn.close();
+					
+				}catch(Exception e1) {
+					e1.printStackTrace();
 				}
-				if(id.equals("test") && pw.equals("test1")) {
-
-					JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-
-					return;
 				
-			}
-				JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+			
 			}
 		});
 		
