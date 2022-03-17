@@ -1,12 +1,16 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -24,7 +28,7 @@ public class NewAdd extends JFrame {
 		setTitle("회원가입");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(460,470);
-// 		setLocationRelativeTo(null);
+//		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(contentPane);
@@ -61,7 +65,7 @@ public class NewAdd extends JFrame {
 		tfUsername.setBounds(159, 106, 186, 35);
 		contentPane.add(tfUsername);
 		
-		tfPassword = new JTextField();
+		tfPassword = new JPasswordField();
 		tfPassword.setColumns(10);
 		tfPassword.setBounds(159, 156, 186, 35);
 		contentPane.add(tfPassword);
@@ -93,6 +97,26 @@ public class NewAdd extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
 				dispose();
+				
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");// jdbc driver load
+					//Connection
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","hong");// 연결
+					System.out.println("연결완료");
+					
+					Statement stmt=conn.createStatement();
+					
+					
+					stmt.executeUpdate("insert into member values('"+tfUsername.getText()+"','"+tfPassword.getText()+"','"+tfName.getText()+"','"+tfEmail.getText()+"','"+tfPhone.getText()+"')");
+					
+//					ResultSet rs=stmt.executeQuery("select pw from member where id = '"+id+"'");			
+				
+					stmt.close();
+					conn.close();
+					
+				}catch(Exception e1) {
+					e1.printStackTrace();
+				}
 				
 			}
 		});
