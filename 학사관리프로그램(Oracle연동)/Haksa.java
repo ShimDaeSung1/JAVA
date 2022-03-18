@@ -19,9 +19,9 @@ public class Haksa extends JFrame{
  Haksa(){
   setTitle("학사관리시스템"); 
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//x버튼 누르면 프로그램 종료
+//  setLocationRelativeTo(null);
   
-  
-  
+  setLocation(720,300);
   JMenuBar bar=new JMenuBar();
   
   JButton button = new JButton("접속");
