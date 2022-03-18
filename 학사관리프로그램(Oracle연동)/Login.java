@@ -17,7 +17,8 @@ public class Login extends JFrame{
 Font f1;
 	
 Login(){
-		
+		setLocation(720,300);
+//		setLocationRelativeTo(null);
 		f1 = new Font("바탕",Font.PLAIN,15);
 		
 		JLabel lb1 = new JLabel();            
@@ -101,14 +102,14 @@ Login(){
 			
 		});
 		
-		bt1.addActionListener(new ActionListener() {  
-			public void actionPerformed(ActionEvent e) {       
-				String data = "Username " + tf1.getText();  
-				data += ", Password: "   
-						+ new String(pw1.getPassword());   
-				lb1.setText(data);          
-             }  
-          });   
+//		bt1.addActionListener(new ActionListener() {  
+//			public void actionPerformed(ActionEvent e) {       
+//				String data = "Username " + tf1.getText();  
+//				data += ", Password: "   
+//						+ new String(pw1.getPassword());   
+//				lb1.setText(data);          
+//             }  
+//          });   
  
 		add(lb1);add(pw1);
 		add(lb2);add(tf1);
