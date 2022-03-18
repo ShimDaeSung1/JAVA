@@ -7,11 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 
 class LoginDialog extends JPanel{
 
@@ -29,11 +26,13 @@ public class Start extends JFrame {
 	Font f1;
 	
 	
-	private Image backGround=new ImageIcon(Start.class.getResource("아주대학교.jpg")).getImage();
+	private Image backGround=new ImageIcon(Start.class.getResource("아주대학교2.jpg")).getImage();
 	public void paint(Graphics g) {//그리는 함수
 		g.drawImage(backGround, 10, 17, this);//background를 그려줌
 	}
 	Start(){
+		setLocation(720,300);
+//		setLocationRelativeTo(null);
 		f1 = new Font("바탕",Font.PLAIN,15);
 		setLayout(null);
 		setTitle("아주대학교 학사관리 프로그램");
