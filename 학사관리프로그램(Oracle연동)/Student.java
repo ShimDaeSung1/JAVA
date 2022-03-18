@@ -156,7 +156,7 @@ public class Student extends JPanel{
 					Statement stmt=conn.createStatement();
 					
 					
-					stmt.executeUpdate("insert into student values('"+tfId.getText()+"','"+tfName.getText()+"','"+tfDepartment.getText()+"',"+tfAddress.getText()+")"); //영향을 받은 행의 수가 리턴됨
+					stmt.executeUpdate("insert into student values('"+tfId.getText()+"','"+tfName.getText()+"','"+tfDepartment.getText()+"','"+tfAddress.getText()+"')"); //영향을 받은 행의 수가 리턴됨
 								
 					ResultSet rs=stmt.executeQuery("select * from student");
 
