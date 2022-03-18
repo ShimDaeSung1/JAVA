@@ -69,14 +69,15 @@ Login(){
 						if(rs.getString(1).contentEquals(pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
 							new Haksa();
-						
-						}else {
-							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
 						}
-						
-					}if(id.length()==0 || pw.length()==0) {
-					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 입력하셔야 됩니다.","아이디나 비번을 입력!", JOptionPane.DEFAULT_OPTION);
 					}
+						if(id.length()==0 || pw.length()==0) {
+							JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 입력하셔야 됩니다.","아이디나 비번을 입력!", JOptionPane.DEFAULT_OPTION);
+						}
+							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+					
+						
+					
 					rs.close();
 					stmt.close();
 					conn.close();
