@@ -105,7 +105,7 @@ public class Student extends JPanel{
 		String colName[]={"학번","이름","학과","주소"};
 		this.model=new DefaultTableModel(colName,0);
 		this.table = new JTable(this.model);
-		this.table.setPreferredScrollableViewportSize(new Dimension(250,300));//테이블 크기 250px X 300px
+		this.table.setPreferredScrollableViewportSize(new Dimension(250,270));//테이블 크기 250px X 300px
 		this.table.addMouseListener(new MouseListener() {
 
 			@Override
