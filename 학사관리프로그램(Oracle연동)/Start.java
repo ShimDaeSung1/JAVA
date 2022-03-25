@@ -28,7 +28,7 @@ public class Start extends JFrame {
 	
 	private Image backGround=new ImageIcon(Start.class.getResource("아주대학교2.jpg")).getImage();
 	public void paint(Graphics g) {//그리는 함수
-		g.drawImage(backGround, 10, 17, this);//background를 그려줌
+		g.drawImage(backGround, 3, 17, this);//background를 그려줌
 	}
 	Start(){
 		setLocation(720,300);
@@ -39,7 +39,7 @@ public class Start extends JFrame {
 		
 		
 		button = new JButton("접속");
-		button.setBounds(350,370, 70,30);
+		button.setBounds(380,440, 70,30);
 		add(button);
 
 	    button.addActionListener(new ActionListener() {
@@ -61,7 +61,7 @@ public class Start extends JFrame {
         add(p);
 		
 		
-	    this.setSize(460,470);
+	    this.setSize(490,540);
 	    this.setVisible(true);
 	
 		
@@ -74,4 +74,3 @@ public class Start extends JFrame {
 	}
 
 }
-
