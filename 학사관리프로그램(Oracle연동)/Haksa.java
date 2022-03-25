@@ -51,7 +51,7 @@ public class Haksa extends JFrame{
     panel.repaint();    //다시 그리기
     panel.add(new Student()); //화면 생성.
     panel.setLayout(null);//레이아웃적용안함
-    setSize(300,570);
+    setSize(300,540);
     
    }});
    
